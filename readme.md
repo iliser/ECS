@@ -31,5 +31,5 @@ void MoveSystem(GameState & gs)
 }
 
 //call system
-PositionLogSystem(gs);
+MoveSystem(gs);
 ```
