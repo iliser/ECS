@@ -12,7 +12,7 @@ template<class T> struct ComTag{};
 #define DataComponent(ComName,DataType) struct ComName##Component{DataType data;};\
 ComTag<ComName##Component> ComName;
 
-class GameState
+class ComponentsState
 {
     using cc_ptr = std::unique_ptr<IComponentContainer>;
     std::unordered_map<std::type_index,cc_ptr> data;
@@ -26,7 +26,7 @@ public:
             auto ptr = f.get();
             auto c_ptr = dynamic_cast<ComponentContainer<Com>*>(ptr);
             assert(c_ptr != nullptr 
-                && "GameState -> ComponentContainerPtr contain not valid pointer");
+                && "ComponentsState -> ComponentContainerPtr contain not valid pointer");
             return *c_ptr;
         }
         f = std::make_unique<ComponentContainer<Com>>();

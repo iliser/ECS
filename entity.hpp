@@ -1,16 +1,16 @@
 #pragma once
 
-#include "game_state.hpp"
+#include "components_state.hpp"
 
 struct ComponentAccessException{};
 
 class Entity
 {
     size_t oid;
-    GameState * gs;
+    ComponentsState * gs;
 
-    Entity(size_t oid,GameState *gs):oid(oid),gs(gs){}
-    friend GameState;
+    Entity(size_t oid,ComponentsState *gs):oid(oid),gs(gs){}
+    friend ComponentsState;
 public:
     template<class Com> Com & get()
     {
@@ -26,7 +26,7 @@ public:
     }
 };
 
-template<class ...Args> Entity GameState::createEntity(ComTag<Args> ...ct)
+template<class ...Args> Entity ComponentsState::createEntity(ComTag<Args> ...ct)
 {
     Entity e{++id,this};
     (get<Args>().add(id),...);

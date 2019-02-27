@@ -5,5 +5,3 @@
 #include <cassert>
 
 #include "entity.hpp"
-
-#include <glm/vec3.hpp>

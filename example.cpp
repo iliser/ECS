@@ -1,17 +1,17 @@
 #include "ecs.hpp"
 
 #include <iostream>
-
+#include <glm/vec3.hpp>
 DataComponent(Velocity,glm::vec3);
 DataComponent(Position,glm::vec3);
 
 template<class T> class E;
-void PositionLogSystem(GameState & gs)
+void PositionLogSystem(ComponentsState & gs)
 {
     for(auto &[k,p]:gs[Position])std::cout<<p.data.x<<' '<<p.data.y<<'\n';
 }
 
-void MoveSystem(GameState & gs)
+void MoveSystem(ComponentsState & gs)
 {
     for(auto &[k,v]:gs[Velocity])
     {
@@ -23,7 +23,7 @@ void MoveSystem(GameState & gs)
 
 int main()
 {
-    GameState gs;
+    ComponentsState gs;
     auto e = gs.createEntity(Position,Velocity);
     e[Position].data = glm::vec3{12,3,0};
     e[Velocity].data = glm::vec3{-1,2,0};

@@ -10,7 +10,7 @@ DataComponent(Velocity,glm::vec3);
 DataComponent(Position,glm::vec3);
 
 //create state
-GameState gs;
+ComponentsState gs;
 
 //create entity
 Entity e = gs.createEntity(Position,Velocity);
@@ -21,7 +21,7 @@ e[Velocity].data = glm::vec3{-1,2,0};
 
 
 //Define system
-void MoveSystem(GameState & gs)
+void MoveSystem(ComponentsState & gs)
 {
     for(auto &[k,v]:gs[Velocity])
     {
